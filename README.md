@@ -30,5 +30,5 @@ Is a repository with some scripts for the [Scriptable App](https://scriptable.ap
 ## List of Scripts
 
 * Covid-19
-  * Widget 7 days incidence of area [widget_covid19_7day_incidence_areas.js](raw/main/widget_covid19_7day_incidence_areas.js)
+  * Widget 7 days incidence of area [widget_covid19_7day_incidence_areas.js](widget_covid19_7day_incidence_areas.js)
   <img src="images/widget_covid19_7day_incidence_areas.png" width="120"/>  
