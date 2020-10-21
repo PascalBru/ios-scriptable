@@ -39,5 +39,4 @@ curl https://raw.githubusercontent.com/PascalBru/ios-scriptable/main/import_scri
   * Widget 7 days incidence of area [widget_covid19_7day_incidence_areas.js](widget_covid19_7day_incidence_areas.js)
   <img src="images/widget_covid19_7day_incidence_areas.png" width="120"/> 
   
-  To Import just Tap:
-  scriptable:///run?scriptName=import_scripts&name=COVID-19&contentPath=https%3A%2F%2Fraw.githubusercontent.com%2FPascalBru%2Fios-scriptable%2Fmain%2Fwidget_covid19_7day_incidence_areas.js
+  * To Import just Tap [IMPORT](scriptable:///run?scriptName=import_scripts&name=COVID-19&contentPath=https%3A%2F%2Fraw.githubusercontent.com%2FPascalBru%2Fios-scriptable%2Fmain%2Fwidget_covid19_7day_incidence_areas.js) from your iOS-Device
