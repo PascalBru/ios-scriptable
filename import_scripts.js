@@ -7,13 +7,19 @@ const libraryName = args.queryParameters["name"];
 const libContentPath = args.queryParameters["contentPath"];
 
 
+//Set-up a local file manager object instance
+let fmLocal = FileManager.local();
+
+let modulePath = module.filename;
+console.log(modulePath);
+
 //These constants define where to place your library file
-const scriptableFilesPath = "/var/mobile/Library/Mobile Documents/iCloud~dk~simonbs~Scriptable/Documents/";
+const scriptableFilesPath = modulePath.replace("import_scripts.js", "");
+console.log(scriptableFilesPath);
 const libraryPath = `${scriptableFilesPath}${libraryName}.js`;
 
 
-//Set-up a local file manager object instance
-let fmLocal = FileManager.local();
+
 
 //---
 //The content in this section writes a library file
