@@ -1,0 +1,17 @@
+{
+  "name": "ios-scriptable",
+  "version": "1.0.0",
+  "eslintConfig": {
+    "extends": "@scriptable-ios"
+  },
+  "devDependencies": {
+    "@scriptable-ios/eslint-config": "latest",
+    "@types/scriptable-ios": "latest",
+    "prettier": "^2.1.2"
+  },
+  "scripts": {
+    "pretty-check": "prettier --check *.js",
+    "pretty-write": "prettier --write *.js"
+  },
+  "dependencies": {}
+}
