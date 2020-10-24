@@ -36,8 +36,13 @@ curl https://raw.githubusercontent.com/PascalBru/ios-scriptable/main/import_scri
 ## List of Scripts
 
 * Covid-19
-  * copies the selected area code to the clipboard [covid19_area_code.js](covid19_area_code.js) ([IMPORT](https://open.scriptable.app/run?scriptName=import_scripts&name=COVID-19AreaCode&contentPath=https%3A%2F%2Fraw.githubusercontent.com%2FPascalBru%2Fios-scriptable%2Fmain%2Fcovid19_area_code.js) directly on iOS-Device)
+  * shows the detail of the area and copies the selected code to the clipboard [covid19_area_code.js](covid19_area_code.js) ([IMPORT](https://open.scriptable.app/run?scriptName=import_scripts&name=COVID-19AreaCode&contentPath=https%3A%2F%2Fraw.githubusercontent.com%2FPascalBru%2Fios-scriptable%2Fmain%2Fcovid19_area_code.js) directly on iOS-Device)
   * Widget 7 days incidence of area [widget_covid19_7day_incidence_areas.js](widget_covid19_7day_incidence_areas.js) ([IMPORT](https://open.scriptable.app/run?scriptName=import_scripts&name=COVID-19&contentPath=https%3A%2F%2Fraw.githubusercontent.com%2FPascalBru%2Fios-scriptable%2Fmain%2Fwidget_covid19_7day_incidence_areas.js) directly on iOS-Device)  
   At the beginning of the script the list of shown areas could be edited. To get the code easily just use the script [covid19_area_code.js](https://open.scriptable.app/run?scriptName=import_scripts&name=COVID-19AreaCode&contentPath=https%3A%2F%2Fraw.githubusercontent.com%2FPascalBru%2Fios-scriptable%2Fmain%2Fcovid19_area_code.js)  
-  <img src="images/widget_covid19_7day_incidence_areas.png" width="120"/>  
+    * <img src="images/widget_covid19_7day_incidence_areas-small.png" width="120"/>
+    * <img src="images/widget_covid19_7day_incidence_areas-medium.png" width="240"/>  
 
+## Sources of data
+
+* [NPGEO Corona - RKI Corona Bundesländer](https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/ef4b445a53c1406892257fe63129a8ea_0/geoservice)
+* [NPGEO Corona - RKI Corona Landkreise](https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0/geoservice)
