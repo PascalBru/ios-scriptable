@@ -2,6 +2,10 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: gray; icon-glyph: database;
 // Licence: Robert Koch-Institut (RKI), dl-de/by-2-0
+// the list of RS values
+const district_code = ['09178', '09184', '09162'];
+// the names shown in the widget
+const district_widget = ['Freising', 'LK München', 'München'];
 // url for the data of an district
 const url_district = district_code =>
     `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=RS=\'${district_code}\'&outFields=*&returnGeometry=false&outSR=4326&f=json`;
@@ -20,10 +24,6 @@ const url_state_7day_old = district_code =>
 // url for the data of the new cases per state
 const url_state = state_code =>
     `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Coronaf%C3%A4lle_in_den_Bundesl%C3%A4ndern/FeatureServer/0/query?where=OBJECTID_1=${state_code}&outFields=*&returnGeometry=false&outSR=4326&f=json`;
-// the list of RS values
-const district_code = ['09178', '09184', '09162'];
-// the names shown in the widget
-const district_widget = ['Freising', 'LK München', 'München'];
 
 // set this to true/false during debugging
 const isDarkMode = Device.isUsingDarkAppearance();
@@ -43,6 +43,11 @@ function colorConfig() {
         textColorRed: Color.red(),
     };
 }
+
+const round = (number, decimalPlaces) => {
+    const factorOfTen = Math.pow(10, decimalPlaces);
+    return Math.round(number * factorOfTen) / factorOfTen;
+};
 
 if (config.runsInWidget) {
     const size = config.widgetFamily;
@@ -119,7 +124,12 @@ async function createWidget(size) {
             contentStack = contentStack.addStack();
             let trend;
             if (e.seven_day_100k_before != undefined) {
-                trend = e.seven_day_100k < e.seven_day_100k_before ? '↓' : '↑';
+                trend =
+                    e.seven_day_100k == e.seven_day_100k_before
+                        ? '   '
+                        : e.seven_day_100k < e.seven_day_100k_before
+                        ? '↓'
+                        : '↑';
             } else {
                 trend = '   ';
             }
@@ -202,10 +212,10 @@ async function fetchData() {
             (data_c.features[0].attributes.value / data_a.features[0].attributes.EWZ) * 100000;
         const data_district = {
             place: district_widget[i],
-            seven_day_100k: data_a.features[0].attributes.cases7_per_100k,
-            seven_day_100k_before: seven_day_100k_before,
+            seven_day_100k: round(data_a.features[0].attributes.cases7_per_100k, 4),
+            seven_day_100k_before: round(seven_day_100k_before, 4),
             new_cases: new_cases,
-            new_cases_100k: new_cases_100k,
+            new_cases_100k: round(new_cases_100k, 4),
         };
         console.log(JSON.stringify(data_district, 0, 2));
         ret_data.data.push(data_district);
@@ -230,10 +240,10 @@ async function fetchData() {
                 100000;
             const data_state = {
                 place: data_a.features[0].attributes.BL,
-                seven_day_100k: data_a.features[0].attributes.cases7_bl_per_100k,
-                seven_day_100k_before: seven_day_100k_before,
+                seven_day_100k: round(data_a.features[0].attributes.cases7_bl_per_100k, 4),
+                seven_day_100k_before: round(seven_day_100k_before, 4),
                 new_cases: data_s_a.features[0].attributes.value,
-                new_cases_100k: new_cases_100k,
+                new_cases_100k: round(new_cases_100k, 4),
             };
             console.log(JSON.stringify(data_state, 0, 2));
             data_bl.push(data_state);
