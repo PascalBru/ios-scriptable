@@ -41,6 +41,7 @@ function colorConfig() {
         textColorGreen: Color.green(),
         textColorOrange: Color.orange(),
         textColorRed: Color.red(),
+        textColorDarkRed: new Color('#900E0E', 1),
     };
 }
 
@@ -135,7 +136,9 @@ async function createWidget(size) {
             }
             let seven_day = contentStack.addText(e.seven_day_100k.toFixed(2) + trend);
             let f = e.seven_day_100k;
-            if (f >= 50.0) {
+            if (f >= 100.0) {
+                seven_day.textColor = colors.textColorDarkRed;
+            } else if (f >= 50.0) {
                 seven_day.textColor = colors.textColorRed;
             } else if (f >= 35.0) {
                 seven_day.textColor = colors.textColorOrange;
