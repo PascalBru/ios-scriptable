@@ -37,8 +37,10 @@ data_state.features.forEach(f => {
     table.addRow(row);
     let state_str = f.attributes.LAN_ew_GEN + ' (' + f.attributes.LAN_ew_BEZ + ')';
     let cell = UITableCell.text(state_str);
+    cell.widthWeight = 100;
     row.addCell(cell);
     let button = UITableCell.button('🔘');
+    button.widthWeight = 10;
     button.onTap = async () => {
         console.log(f.attributes.OBJECTID_1 + ' button clicked');
         loadCommunity(f.attributes.OBJECTID_1);
@@ -64,9 +66,10 @@ async function loadCommunity(state) {
         table.addRow(row_c);
         let c_str = f.attributes.GEN + ' (' + f.attributes.BEZ + ')';
         let cell = UITableCell.text(c_str);
-        //cell.widthWeigt = 100;
+        cell.widthWeight = 100;
         row_c.addCell(cell);
         let button = UITableCell.button('🔘');
+        button.widthWeight = 10;
         button.onTap = () => {
             console.log(f.attributes.RS + ' button clicked');
             loadCommunityDetails(f.attributes.RS);
