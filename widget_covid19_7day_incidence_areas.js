@@ -19,8 +19,8 @@ const url_district_7day_old = district_code =>
 const url_state_new_case = state_code =>
     `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0/query?f=json&where=(NeuerFall%20IN(1%2C%20-1))%20AND%20(IdBundesland=\'${state_code}\')&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22AnzahlFall%22%2C%22outStatisticFieldName%22%3A%22value%22%7D%5D&resultType=standard&cacheHint=true`;
 // url for the data of the count of case during last 7 days without yesterday per state
-const url_state_7day_old = district_code =>
-    `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0/query?where=NeuerFall%20NOT%20IN(1%2C%20-1)%20AND%20IdBundesland=9%20AND%20Meldedatum%20%3E%3D%20CURRENT_TIMESTAMP%20-%20INTERVAL%20%279%27%20DAY&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22AnzahlFall%22%2C%22outStatisticFieldName%22%3A%22value%22%7D%5D&f=json&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&resultType=standard&cacheHint=true`;
+const url_state_7day_old = state_code =>
+    `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0/query?where=NeuerFall%20NOT%20IN(1%2C%20-1)%20AND%20IdBundesland=${state_code}%20AND%20Meldedatum%20%3E%3D%20CURRENT_TIMESTAMP%20-%20INTERVAL%20%279%27%20DAY&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22AnzahlFall%22%2C%22outStatisticFieldName%22%3A%22value%22%7D%5D&f=json&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&resultType=standard&cacheHint=true`;
 // url for the data of the new cases per state
 const url_state = state_code =>
     `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/Coronaf%C3%A4lle_in_den_Bundesl%C3%A4ndern/FeatureServer/0/query?where=OBJECTID_1=${state_code}&outFields=*&returnGeometry=false&outSR=4326&f=json`;
@@ -68,8 +68,9 @@ if (config.runsInWidget) {
     alert.message = 'Choose size of widget!';
     alert.addAction('small');
     alert.addAction('medium');
+    alert.addAction('large');
     let alertR = await alert.present();
-    const size = alertR == 0 ? 'small' : 'medium';
+    const size = alertR == 0 ? 'small' : alertR == 1 ? 'medium' : 'large';
     const widget = await createWidget(size);
     if (size == 'small') {
         widget.presentSmall();
@@ -94,7 +95,7 @@ async function createWidget(size) {
     title.centerAlignText();
 
     // small and medium size
-    if (size == 'small' || size == 'medium') {
+    if (((size == 'small' || size == 'medium') && data.data.length <= 4) || size == 'large') {
         //title.font = Font.boldRoundedSystemFont(14);
         title.font = Font.headline();
         widget.addSpacer();
@@ -107,7 +108,7 @@ async function createWidget(size) {
         let headlineText = headline.addText('7-Tage-I');
         headlineText.textColor = colors.textColor;
         headlineText.font = Font.subheadline();
-        if (size == 'medium') {
+        if (size == 'medium' || size == 'large') {
             headline.addSpacer(15);
             let headlineText = headline.addText('Vortag');
             headlineText.textColor = colors.textColor;
@@ -145,7 +146,7 @@ async function createWidget(size) {
             } else {
                 seven_day.textColor = colors.textColorGreen;
             }
-            if (size == 'medium') {
+            if (size == 'medium' || size == 'large') {
                 contentStack.size = new Size(120, 0);
                 contentStack.addSpacer();
                 let ncw;
@@ -157,8 +158,9 @@ async function createWidget(size) {
                 ncw.rightAlignText();
             }
         });
+        widget.addSpacer();
     } else {
-        const title = widget.addText(`size not supported`);
+        const title = widget.addText(`size/amount not supported`);
         title.font = Font.boldRoundedSystemFont(20);
         title.textColor = colors.textColor;
         title.centerAlignText();
