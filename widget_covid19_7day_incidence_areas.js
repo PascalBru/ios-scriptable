@@ -155,6 +155,7 @@ async function createWidget(size) {
                 } else {
                     ncw = contentStack.addText('  ');
                 }
+                ncw.textColor = colors.textColor;
                 ncw.rightAlignText();
             }
         });
