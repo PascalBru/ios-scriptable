@@ -10,7 +10,7 @@ const url_community_detail = community =>
     `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=RS%20%3D%20%27${community}%27&returnGeometry=false&outFields=*&orderByFields=GEN&outSR=4326&f=json`;
 
 const url_community_cases = community =>
-    `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0/query?where=IdLandkreis=\'${community}\'%20AND%20Meldedatum%20%3E%3D%20CURRENT_TIMESTAMP%20-%20INTERVAL%20%2710%27%20DAY&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22AnzahlFall%22%2C%22outStatisticFieldName%22%3A%22value%22%7D%5D&groupByFieldsForStatistics=Meldedatum&f=json&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&resultType=standard&cacheHint=true`;
+    `https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0/query?where=IdLandkreis=\'${community}\'%20AND%20Meldedatum%20%3E%3D%20CURRENT_TIMESTAMP%20-%20INTERVAL%20%2716%27%20DAY&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22AnzahlFall%22%2C%22outStatisticFieldName%22%3A%22value%22%7D%5D&groupByFieldsForStatistics=Meldedatum&f=json&&orderByFields=Meldedatum&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&resultType=standard&cacheHint=true`;
 
 const show_fields = [
     'RS',
@@ -208,14 +208,14 @@ async function loadCommunityCases(community, ewz, sevenday_incidence) {
         c = UITableCell.text('' + next_stage);
         c.widthWeight = 50;
         row_c.addCell(c);
-        row_c = new UITableRow();
+/**        row_c = new UITableRow();
         table.addRow(row_c);
         c = UITableCell.text('Summe');
         c.widthWeight = 100;
         row_c.addCell(c);
         c = UITableCell.text('' + case_summe);
         c.widthWeight = 50;
-        row_c.addCell(c);
+        row_c.addCell(c);*/
         let count_next_stage = round((next_stage / 100000) * ewz, 0) - case_summe;
         row_c = new UITableRow();
         table.addRow(row_c);
