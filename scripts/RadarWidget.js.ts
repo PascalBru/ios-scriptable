@@ -8,7 +8,7 @@ import { url_map, url_map_center } from "./utils/google-maps-utils";
 const logLevel: number = LOG_LEVEL.DEBUG;
 const VERSION = "0.1";
 
-const google_api_key = `AIzaSyAQZpCopNT3W3o0RcIH6WEOcfXSQYobYtE`
+const google_api_key = ``
 
 log(LOG_LEVEL.INFO, logLevel, 'start script (' + module.filename + '/' + VERSION + '): ' + args.widgetParameter)
 
