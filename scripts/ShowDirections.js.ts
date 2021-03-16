@@ -6,7 +6,7 @@ import { url_maps_path } from "scripts/utils/google-maps-utils"
 const logLevel: number = LOG_LEVEL.DEBUG;
 const VERSION = "0.1";
 
-const google_api_key = ``
+const google_api_key = `__google_api_key__`
 
 log(LOG_LEVEL.INFO, logLevel, 'start script (' + module.filename + '/' + VERSION + '): ' + args.widgetParameter)
 

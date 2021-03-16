@@ -11,6 +11,7 @@
     "extends": "@scriptable-ios"
   },
   "devDependencies": {
+    "@rollup/plugin-replace": "^2.4.1",
     "@rollup/plugin-typescript": "^8.1.0",
     "@scriptable-ios/eslint-config": "^1.5.1",
     "@types/scriptable-ios": "^1.6.0",

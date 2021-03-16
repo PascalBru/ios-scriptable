@@ -1,4 +1,5 @@
 import typescript from '@rollup/plugin-typescript';
+import replace from '@rollup/plugin-replace';
 import { readdirSync } from "fs";
 import { parse } from "path";
 
@@ -6,12 +7,16 @@ const WIDGET_LOADER_BANNER = `// Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: __iconColor__; icon-glyph: __iconGlyph__;
 `;
+import devConfig from './config.dev.json';
+import prodConfig from './config.prod.json';
+
+const dev = (process.env.NODE_ENV !== 'production');
+const configValues = dev ? devConfig : prodConfig;
 
 const widgetModuleFilenames = readdirSync("scripts/")
     .filter(fileName => fileName.endsWith(".js.ts"));
 
 function getBanner(fileName){
-    console.log(fileName);
     if (['IncidenceWidget.js.ts'].includes(fileName)){
         // add header for RKI License
         return WIDGET_LOADER_BANNER + '// Licence: Robert Koch-Institut (RKI), dl-de/by-2-0';
@@ -32,6 +37,12 @@ export default [
             name: parse(fileName).name,
             banner: getBanner(fileName),
         },
-        plugins: [typescript()]
+        plugins: [
+            typescript(),
+            replace({
+                preventAssignment: true,
+                values: configValues
+              }),
+        ]
     }))),
 ];
