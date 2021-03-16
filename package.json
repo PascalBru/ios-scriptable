@@ -1,17 +1,23 @@
 {
   "name": "ios-scriptable",
   "version": "1.0.0",
+  "scripts": {
+    "pretty-check": "prettier --check *.js",
+    "pretty-write": "prettier --write *.js",
+    "build": "rollup --config rollup.config.js",
+    "watch": "rollup --config rollup.config.js --watch"
+  },
   "eslintConfig": {
     "extends": "@scriptable-ios"
   },
   "devDependencies": {
-    "@scriptable-ios/eslint-config": "latest",
-    "@types/scriptable-ios": "latest",
-    "prettier": "^2.1.2"
-  },
-  "scripts": {
-    "pretty-check": "prettier --check *.js",
-    "pretty-write": "prettier --write *.js"
-  },
-  "dependencies": {}
+    "@rollup/plugin-typescript": "^8.1.0",
+    "@scriptable-ios/eslint-config": "^1.5.1",
+    "@types/scriptable-ios": "^1.6.0",
+    "eslint": "latest",
+    "prettier": "^2.1.2",
+    "rollup": "^2.35.1",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.5"
+  }
 }

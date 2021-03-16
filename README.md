@@ -46,3 +46,9 @@ curl https://raw.githubusercontent.com/PascalBru/ios-scriptable/main/import_scri
 
 * [NPGEO Corona - RKI Corona Bundesländer](https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/ef4b445a53c1406892257fe63129a8ea_0/geoservice)
 * [NPGEO Corona - RKI Corona Landkreise](https://npgeo-corona-npgeo-de.hub.arcgis.com/datasets/917fc37a709542548cc3be077a786c17_0/geoservice)
+* [Google Maps - Maps Static](https://developers.google.com/maps/documentation/maps-static/)
+* [Google Maps - Directions API](https://developers.google.com/maps/documentation/directions/)
+
+## Sources of help
+
+* https://github.com/jasperhartong/scriptable-ts-boilerplate
