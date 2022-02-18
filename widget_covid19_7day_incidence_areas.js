@@ -1,6 +1,3 @@
-// Variables used by Scriptable.
-// These must be at the very top of the file. Do not edit.
-// icon-color: gray; icon-glyph: database;
 // Licence: Robert Koch-Institut (RKI), dl-de/by-2-0
 // the list of RS values
 const district_code = ['09178', '09184', '09162'];
@@ -42,6 +39,7 @@ function colorConfig() {
         textColorOrange: Color.orange(),
         textColorRed: Color.red(),
         textColorDarkRed: new Color('#900E0E', 1),
+        textColorDarkestRed: new Color('#450A0A', 1),
     };
 }
 
@@ -109,7 +107,7 @@ async function createWidget(size) {
         headlineText.textColor = colors.textColor;
         headlineText.font = Font.subheadline();
         if (size == 'medium' || size == 'large') {
-            headline.addSpacer(15);
+            headline.addSpacer(30);
             let headlineText = headline.addText('Vortag');
             headlineText.textColor = colors.textColor;
             headlineText.font = Font.subheadline();
@@ -137,7 +135,9 @@ async function createWidget(size) {
             }
             let seven_day = contentStack.addText(e.seven_day_100k.toFixed(2) + trend);
             let f = e.seven_day_100k;
-            if (f >= 100.0) {
+            if (f >= 200.0) {
+                seven_day.textColor = colors.textColorDarkestRed;
+            } else if (f >= 100.0) {
                 seven_day.textColor = colors.textColorDarkRed;
             } else if (f >= 50.0) {
                 seven_day.textColor = colors.textColorRed;
@@ -147,7 +147,7 @@ async function createWidget(size) {
                 seven_day.textColor = colors.textColorGreen;
             }
             if (size == 'medium' || size == 'large') {
-                contentStack.size = new Size(120, 0);
+                contentStack.size = new Size(135, 0);
                 contentStack.addSpacer();
                 let ncw;
                 if (e.new_cases != undefined) {
