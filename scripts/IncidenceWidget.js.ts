@@ -59,7 +59,7 @@ class IncidenceListWidget extends WidgetHelper {
         let chart = new DrawContext();
         chart.setTextColor( Color.black());
         let s = getWidgetSizeInPoint(params.widgetSize);
-        let wd = widgetData[params.widgetSize];
+        let wd = widgetData[params.widgetSize == null ? "small" : params.widgetSize];
         let spaceIncidence = s.width / 8;
         let countHeightSize = wd.fontSize * 1.5;
         let heightIncidence = s.height - wd.minusHeight - countHeightSize;

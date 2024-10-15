@@ -3,7 +3,7 @@ import { updatedAt } from "scripts/utils/date-utils"
 
 export interface IWidgetParams {
     widgetParameter: string;
-    widgetSize: string
+    widgetSize: "small" | "medium" | "large" | "extraLarge" | "accessoryRectangular" | "accessoryInline" | "accessoryCircular" | null;
 }
 
 export interface IWidgetModule {
