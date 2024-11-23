@@ -1,4 +1,4 @@
-import { GPSPoint } from "scripts/utils/gps"
+import { GPSPoint } from 'scripts/utils/gps';
 
 export interface IMapsRadar {
     google_api_key: string;
@@ -25,6 +25,23 @@ export const url_map_center = (m: IMapsCenterRadar) => `https://maps.googleapis.
 
 // map with path
 export const url_maps_path = (m: IMapsEncPath) => `https://maps.googleapis.com/maps/api/staticmap?size=${m.screen.width}x${m.screen.height}&path=enc:${m.path}&key=${m.google_api_key}`
+
+export interface IMapsSearchPlaces {
+    google_api_key: string;
+    radius: number;
+}
+
+// search places nearby
+export const url_places_search =(m: IMapsSearchPlaces) => `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=48.28246409381787,11.67160610707025&radius=${m.radius}&key=${m.google_api_key}`
+
+export interface IMapsPlaceDetails {
+    google_api_key: string;
+    place_id: string;
+}
+
+// places details
+export const url_place_details =(m: IMapsPlaceDetails) => `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Curl%2Cwebsite%2Cformatted_address&place_id=${m.place_id}&key=${m.google_api_key}`
+
 
 function combineMarkers(markers: GPSPoint[]){
     let ret = '';

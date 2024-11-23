@@ -14,7 +14,7 @@ const dev = (process.env.NODE_ENV !== 'production');
 const configValues = dev ? devConfig : prodConfig;
 
 const widgetModuleFilenames = readdirSync("scripts/")
-    .filter(fileName => fileName.endsWith(".js.ts"));
+    .filter(fileName => fileName.endsWith(".ts"));
 
 function getBanner(fileName){
     if (['IncidenceWidget.js.ts'].includes(fileName)){
