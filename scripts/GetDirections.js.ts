@@ -1,8 +1,8 @@
 import { LOG_LEVEL, log, logJSON } from "scripts/utils/debug-utils";
-import { writeFile } from "scripts/utils/file-utils"
-import { InputTextAlert, QuestionAlert } from "scripts/components/alert-helper"
-import { decodePolyline, Direction, DirectionPolyline, distance, encodePolyline, GPSPoint } from "scripts/utils/gps"
-import { url_maps_path } from "scripts/utils/google-maps-utils"
+import { writeFile } from "scripts/utils/file-utils";
+import { InputTextAlert, QuestionAlert } from "scripts/components/alert-helper";
+import { decodePolyline, Direction, DirectionPolyline, distance, encodePolyline, GPSPoint } from "scripts/utils/gps";
+import { url_maps_path } from "scripts/utils/google-maps-utils";
 
 const logLevel: number = LOG_LEVEL.DEBUG;
 const VERSION = "0.1";
