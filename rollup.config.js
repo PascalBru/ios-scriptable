@@ -7,8 +7,8 @@ const WIDGET_LOADER_BANNER = `// Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: __iconColor__; icon-glyph: __iconGlyph__;
 `;
-import devConfig from './config.dev.json' assert { type: "json" };
-import prodConfig from './config.prod.json' assert { type: "json" };
+import devConfig from './config.dev.json' with { type: "json" };
+import prodConfig from './config.prod.json' with { type: "json" };
 
 const dev = (process.env.NODE_ENV !== 'production');
 const configValues = dev ? devConfig : prodConfig;
