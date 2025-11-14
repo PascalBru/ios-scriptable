@@ -28,11 +28,20 @@ export const url_maps_path = (m: IMapsEncPath) => `https://maps.googleapis.com/m
 
 export interface IMapsSearchPlaces {
     google_api_key: string;
+    act_gps: GPSPoint;
     radius: number;
 }
 
 // search places nearby
-export const url_places_search =(m: IMapsSearchPlaces) => `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=48.28246409381787,11.67160610707025&radius=${m.radius}&key=${m.google_api_key}`
+export const url_places_search =(m: IMapsSearchPlaces) => `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${m.act_gps.latitude},${m.act_gps.longitude}&radius=${m.radius}&key=${m.google_api_key}`
+
+export interface IMapsSearchPlacesNext {
+    google_api_key: string;
+    pagetoken: string;
+}
+
+// search places nearby (next page)
+export const url_places_search_next =(m: IMapsSearchPlacesNext) => `https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=${m.pagetoken}&key=${m.google_api_key}`
 
 export interface IMapsPlaceDetails {
     google_api_key: string;
@@ -41,7 +50,6 @@ export interface IMapsPlaceDetails {
 
 // places details
 export const url_place_details =(m: IMapsPlaceDetails) => `https://maps.googleapis.com/maps/api/place/details/json?fields=name%2Curl%2Cwebsite%2Cformatted_address&place_id=${m.place_id}&key=${m.google_api_key}`
-
 
 function combineMarkers(markers: GPSPoint[]){
     let ret = '';
